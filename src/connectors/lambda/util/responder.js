@@ -1,7 +1,7 @@
 const logger = require('../../logger');
 
-module.exports = (callback) => ({
-  success: (response) => {
+module.exports = callback => ({
+  success: response => {
     logger.info('Success response');
     logger.debug('Response was: ', response);
     callback(null, {
@@ -12,7 +12,7 @@ module.exports = (callback) => ({
       }
     });
   },
-  error: (err) => {
+  error: err => {
     logger.error('Error response: ', err.message || err);
     callback(null, {
       statusCode: 400,
@@ -22,7 +22,7 @@ module.exports = (callback) => ({
       }
     });
   },
-  redirect: (url) => {
+  redirect: url => {
     logger.info('Redirect response');
     logger.debug('Redirect response to %s', url, {});
     callback(null, {

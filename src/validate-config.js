@@ -1,6 +1,6 @@
 const config = require('./config');
 
-const ensureString = (variableName) => {
+const ensureString = variableName => {
   if (typeof config[variableName] !== 'string') {
     throw new Error(
       `Environment variable ${variableName} must be set and be a string`
@@ -8,7 +8,7 @@ const ensureString = (variableName) => {
   }
 };
 
-const ensureNumber = (variableName) => {
+const ensureNumber = variableName => {
   if (typeof config[variableName] !== 'number') {
     throw new Error(
       `Environment variable ${variableName} must be set and be a number`

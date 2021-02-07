@@ -21,7 +21,7 @@ describe('openid domain layer', () => {
   });
 
   describe('userinfo function', () => {
-    const mockEmailsWithPrimary = (withPrimary) => {
+    const mockEmailsWithPrimary = withPrimary => {
       githubMock.getUserEmails.mockImplementation(() =>
         Promise.resolve([
           {
