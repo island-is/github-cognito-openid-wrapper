@@ -18,7 +18,7 @@ const getApiEndpoints = (
   oauthAuthorize: `${loginBaseUrl}/login/oauth/authorize`
 });
 
-const check = response => {
+const check = (response) => {
   logger.debug('Checking response: %j', response, {});
   if (response.data) {
     if (response.data.error) {
@@ -55,9 +55,9 @@ module.exports = (apiBaseUrl, loginBaseUrl) => {
       `${urls.oauthAuthorize}?client_id=${client_id}&scope=${encodeURIComponent(
         scope
       )}&state=${state}&response_type=${response_type}`,
-    getUserDetails: accessToken =>
+    getUserDetails: (accessToken) =>
       gitHubGet(urls.userDetails, accessToken).then(check),
-    getUserEmails: accessToken =>
+    getUserEmails: (accessToken) =>
       gitHubGet(urls.userEmails, accessToken).then(check),
     getToken: (code, state) => {
       const data = {
