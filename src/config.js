@@ -1,11 +1,13 @@
 module.exports = {
+  GITHUB_API_URL: "https://api.github.com",
+  GITHUB_LOGIN_URL: "https://github.com",
   GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
   COGNITO_REDIRECT_URI: process.env.COGNITO_REDIRECT_URI,
-  GITHUB_API_URL: process.env.GITHUB_API_URL,
-  GITHUB_LOGIN_URL: process.env.GITHUB_LOGIN_URL,
+  JWT_RSA_KEY: process.env.JWT_RSA_KEY,
+  JWT_RSA_PUB: process.env.JWT_RSA_PUB,
   PORT: parseInt(process.env.PORT, 10) || undefined,
-
+  LOG_LEVEL: process.env.NODE_LOG_LEVEL,
   // Splunk logging variables
   SPLUNK_URL: process.env.SPLUNK_URL,
   SPLUNK_TOKEN: process.env.SPLUNK_TOKEN,
