@@ -21,7 +21,7 @@ case $PUBLISH in
 
 esac
 
-DOCKER_BUILDKIT=docker build -f "$PROJECT_ROOT/Dockerfile" \
+DOCKER_BUILDKIT=1 docker build -f "$PROJECT_ROOT/Dockerfile" \
 -t "${DOCKER_REGISTRY}${APP}:${DOCKER_TAG}" \
 "$PROJECT_ROOT/"
 
