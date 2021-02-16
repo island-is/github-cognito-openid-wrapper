@@ -10,6 +10,7 @@ on:
       - "**/*.md"
   pull_request:
     branches:
+      - Feat/*
       - master
   workflow_dispatch: {}
 
