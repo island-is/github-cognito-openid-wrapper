@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:experimental
 FROM node:12.19.0-alpine3.11 as base
 WORKDIR /tmp
 RUN apk add --update python3 bash openssh-keygen openssl
