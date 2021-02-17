@@ -3,6 +3,9 @@ const auth = require('./auth');
 const controllers = require('../controllers');
 
 module.exports = {
+  liveness: (req, res) => {
+    controllers(responder(res)).liveness(req);
+  },
   userinfo: (req, res) => {
     controllers(responder(res)).userinfo(auth.getBearerToken(req));
   },

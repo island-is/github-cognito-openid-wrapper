@@ -2,6 +2,10 @@ const logger = require('./logger');
 const openid = require('../openid');
 
 module.exports = respond => ({
+  liveness: () => {
+    logger.info('I am alive!', {});
+    respond.success();
+  },
   authorize: (client_id, scope, state, response_type) => {
     const authorizeUrl = openid.getAuthorizeUrl(
       client_id,
