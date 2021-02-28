@@ -14,6 +14,7 @@ const getApiEndpoints = (
 ) => ({
   userDetails: `${apiBaseUrl}/user`,
   userEmails: `${apiBaseUrl}/user/emails`,
+  userOrgs: `${apiBaseUrl}/user/orgs`,
   oauthToken: `${loginBaseUrl}/login/oauth/access_token`,
   oauthAuthorize: `${loginBaseUrl}/login/oauth/authorize`
 });
@@ -75,6 +76,11 @@ module.exports = (apiBaseUrl, loginBaseUrl) => {
       logger.debug('Using access token: %s', accessToken, {})
       logger.debug('Fetching: %s', urls.userEmails, {})
       return gitHubGet(urls.userEmails, accessToken).then(check)
+    },
+    getUserOrgs: (accessToken) => {
+      logger.debug('Using access token: %s', accessToken, {})
+      logger.debug('Fetching: %s', urls.userOrgs, {})
+      return gitHubGet(urls.userOrgs, accessToken).then(check)
     },
     getToken: (code, state) => {
       const data = {

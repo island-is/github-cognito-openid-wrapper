@@ -2,6 +2,9 @@ const logger = require('./connectors/logger');
 const { NumericDate } = require('./helpers');
 const crypto = require('./crypto');
 const github = require('./github');
+const {
+  ORGANIZATION_NAME
+} = require('./config');
 
 const getJwks = () => ({ keys: [crypto.getPublicKey()] });
 
@@ -41,6 +44,20 @@ const getUserInfo = accessToken =>
         const claims = {
           email: primaryEmail.email,
           email_verified: primaryEmail.verified
+        };
+        logger.debug('Resolved claims: %j', claims, {});
+        return claims;
+      }),
+    github()
+      .getUserOrgs(accessToken)
+      .then(userOrgs => {
+        logger.debug('Fetched user orgs: %j', userOrgs, {});
+        const userOrg = userOrgs.find(org => org.login === ORGANIZATION_NAME);
+        if (userOrg === undefined) {
+          throw new Error(`User is not a member of ${ORGANIZATION_NAME}`);
+        }
+        const claims = {
+          gh_org_member: true,
         };
         logger.debug('Resolved claims: %j', claims, {});
         return claims;
@@ -112,7 +129,7 @@ const getConfigFor = host => ({
   // end_session_endpoint: 'https://server.example.com/connect/end_session',
   jwks_uri: `https://${host}/.well-known/jwks.json`,
   // registration_endpoint: 'https://server.example.com/connect/register',
-  scopes_supported: ['openid', 'read:user', 'user:email'],
+  scopes_supported: ['openid', 'read:user', 'user:email', 'read:org'],
   response_types_supported: [
     'code',
     'code id_token',
@@ -136,7 +153,8 @@ const getConfigFor = host => ({
     'email_verified',
     'updated_at',
     'iss',
-    'aud'
+    'aud',
+    'gh_org_member'
   ]
 });
 

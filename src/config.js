@@ -4,6 +4,7 @@ module.exports = {
   GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
   COGNITO_REDIRECT_URI: process.env.COGNITO_REDIRECT_URI,
+  ORGANIZATION_NAME: process.env.ORGANIZATION_NAME,
   JWT_RSA_KEY: process.env.JWT_RSA_KEY,
   JWT_RSA_PUB: process.env.JWT_RSA_PUB,
   PORT: parseInt(process.env.PORT, 10) || undefined,
