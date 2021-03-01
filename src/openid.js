@@ -61,6 +61,22 @@ const getUserInfo = accessToken =>
         };
         logger.debug('Resolved claims: %j', claims, {});
         return claims;
+      }),
+    github()
+      .getUserTeams(accessToken)
+      .then(userTeams => {
+        logger.debug('Fetched user teams: %j', userTeams, {});
+        const userTeamList = userTeams
+          .filter(team=>team.organization.login === ORGANIZATION_NAME)
+          .map(({ name, slug }) => ({ name, slug }));
+        if (userTeamList === undefined) {
+          throw new Error(`User is not part of any team in ${ORGANIZATION_NAME}`);
+        }
+        const claims = {
+          gh_teams: userTeamList,
+        };
+        logger.debug('Resolved claims: %j', claims, {});
+        return claims;
       })
   ]).then(claims => {
     const mergedClaims = claims.reduce(
@@ -154,7 +170,8 @@ const getConfigFor = host => ({
     'updated_at',
     'iss',
     'aud',
-    'gh_org_member'
+    'gh_org_member',
+    'gh_teams'
   ]
 });
 
