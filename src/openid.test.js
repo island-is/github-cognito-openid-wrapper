@@ -166,7 +166,9 @@ describe('openid domain layer', () => {
             'email_verified',
             'updated_at',
             'iss',
-            'aud'
+            'aud',
+            'gh_org_member',
+            'gh_teams'
           ],
           display_values_supported: ['page', 'popup'],
           id_token_signing_alg_values_supported: ['RS256'],
@@ -179,7 +181,7 @@ describe('openid domain layer', () => {
             'id_token',
             'token id_token'
           ],
-          scopes_supported: ['openid', 'read:user', 'user:email'],
+          scopes_supported: ['openid', 'read:user', 'user:email', 'read:org'],
           subject_types_supported: ['public'],
           token_endpoint: 'https://not-a-real-host.com/token',
           token_endpoint_auth_methods_supported: [
