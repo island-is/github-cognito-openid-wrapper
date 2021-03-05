@@ -6,7 +6,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # shellcheck source=src/util.sh
 source "$DIR/_common.sh"
 
-APP="github-oidc"
+APP="github-cognito-oidc"
 case $PUBLISH in
     true)
         PUBLISH_TO_REGISTRY="true"
