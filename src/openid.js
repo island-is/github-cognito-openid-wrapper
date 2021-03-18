@@ -43,7 +43,7 @@ const getUserInfo = accessToken =>
         }
         const claims = {
           email: primaryEmail.email,
-          email_verified: primaryEmail.verified
+          email_verified: true
         };
         logger.debug('Resolved claims: %j', claims, {});
         return claims;
